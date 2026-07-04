@@ -4,9 +4,7 @@
 
  ##Problem Statement
   Many programmers wirte code without knowing whether it is efficient.
-
   Analyzing time complexity, memory usage and optimization opportunities manually is difficult and time consuming.
-
   Our system will automatically analyze system code, identify performance bottlenecks, and provide AI-powered optimization suggestions.
 
  ##Objective
