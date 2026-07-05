@@ -1,5 +1,6 @@
 #System Design
 
+
  ##Project Name
   AI-Powered Code Performance Analysis and Optimizations System
 
@@ -21,4 +22,26 @@
  7. Suggest code optimizations using AI.
  8. Generate a Performance report.
  9. Display analysis results in a user-friendly interface.
+ 
+ ## System Architecture
+
+User
+│
+▼
+Upload C++ File
+│
+▼
+Code Reader
+│
+▼
+Code Analyzer
+│
+▼
+AI Suggestion Engine
+│
+▼
+Report Generator
+│
+▼
+User
 
