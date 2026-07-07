@@ -19,7 +19,18 @@ This project is being developed as part of my M.Tech learning journey to gain ha
 
 ---
 
-## ✨ Planned Features
+## ✨ Features
+
+### ✅ Implemented
+
+- Read C++ source files
+- Count total lines
+- Count total words
+- Count blank lines
+- Count total characters
+- Display formatted analysis report
+
+### 🚧 Under Development
 
 - Static Code Analysis
 - Complexity Analysis
@@ -29,12 +40,18 @@ This project is being developed as part of my M.Tech learning journey to gain ha
 - Report Generation
 - Web-based User Interface
 
----
+
 
 ## 🛠️ Technology Stack
 
+### Currently Used
+
 - Python
-- Git & GitHub
+- Git
+- GitHub
+
+### Planned
+
 - FastAPI
 - Machine Learning
 - Large Language Models (LLMs)
@@ -56,6 +73,9 @@ AI-Code-Performance-Analyzer/
 ├── models/
 ├── reports/
 ├── src/
+│   ├── main.py
+│   ├── reader.py
+│   └── analyzer.py
 ├── tests/
 ├── README.md
 ├── requirements.txt
@@ -63,13 +83,44 @@ AI-Code-Performance-Analyzer/
 
 ---
 
+## 📊 Current Output
+
+```text
+----- Content of the File -----
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    return 0;
+}
+
+--------Analysis Report--------
+
+Total number of lines: 7
+Total number of words: 11
+Total number of blank lines: 0
+Total number of characters: 88
+
+-------------------------------
+```
+
 ## 🚧 Development Status
 
 Current Phase:
-**Project Setup & Planning**
+**Basic Code Analyzer Development**
+
+Completed Modules:
+
+- ✅ File Reader Module
+- ✅ Basic Code Analyzer Module
 
 Next Phase:
-**System Architecture Design**
+
+- 🔄 Loop Detection
+- 🔄 Function Detection
+- 🔄 Variable Detection
 
 ---
 
@@ -83,12 +134,29 @@ Indian Institute of Engineering Science and Technology (IIEST), Shibpur
 
 ---
 
-## 📅 Project Timeline
 
-- Phase 1 – Project Setup ✅
-- Phase 2 – System Design
-- Phase 3 – Static Code Analyzer
-- Phase 4 – Performance Analyzer
-- Phase 5 – AI Recommendation Engine
-- Phase 6 – Web Application
-- Phase 7 – Deployment
+## 📅 Project Timeline
+- ✅ Phase 1 – Project Setup
+- ✅ Phase 2 – Basic File Reader
+- ✅ Phase 3 – Basic Code Analyzer
+- 🔄 Phase 4 – Static Code Analyzer
+- ⏳ Phase 5 – Performance Analyzer
+- ⏳ Phase 6 – AI Recommendation Engine
+- ⏳ Phase 7 – Web Application
+- ⏳ Phase 8 – Deployment
+
+---
+
+## 📈 Development Progress
+
+| Module | Status |
+|---------|--------|
+| Project Setup | ✅ Completed |
+| File Reader | ✅ Completed |
+| Basic Analyzer | ✅ Completed |
+| Loop Detection | 🔄 In Progress |
+| Function Detection | ⏳ Pending |
+| Variable Detection | ⏳ Pending |
+| AI Performance Analysis | ⏳ Pending |
+| Optimization Engine | ⏳ Pending |
+| Web Dashboard | ⏳ Pending |
