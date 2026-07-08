@@ -1,9 +1,16 @@
+#from data.cpp_keywords import cpp_keywords
+
+
 def analyze_content(content):
     line_count=count_lines(content)
     word_count=count_words(content)
     blank_line_count=count_blank_lines(content)
     character_count=count_characters(content)
-    return line_count, word_count, blank_line_count, character_count
+    for_loops_count=count_for_loops(content)
+    while_loops_count=count_while_loops(content)
+    if_statements_count=count_if_statements(content)
+    functions_count=count_functions(content)
+    return line_count, word_count, blank_line_count, character_count, for_loops_count, while_loops_count, if_statements_count, functions_count
 
 
 def count_lines(content):
@@ -35,5 +42,62 @@ def count_characters(content):
     for i in range(0,len(content)):
         count+=1
     return count;
+
+def extract_keyword(tokens):
+    keyword=""
+
+    for ch in tokens:
+        if ch.isalpha():
+            keyword+=ch
+        else:
+            break
+    return keyword
+
+def count_for_loops(content):
+   words=content.split()
+   count=0;
+   for i in range(0,len(words)):
+       keyword=extract_keyword(words[i])
+       if keyword == "for":
+           count+=1
+   return count;
+
+
+
+def count_while_loops(content):
+    line=content.split()
+    count=0;
+    for i in range(0,len(line)):
+        keyword=extract_keyword(line[i])
+        if keyword=="while":
+            count+=1
+    return count;    
+
+
+def count_if_statements(content):
+    line=content.split()
+    count=0;
+    for i in range(0,len(line)):
+        keyword=extract_keyword(line[i])
+        if keyword=="if":
+            count+=1;
+    return count;
+
+
+
+def count_functions(content):
+    line=content.split()
+    count=0;
+    datatypes=["int","float","double","char","void","long","bool","long long","short"]
+    for i in range(1,len(line)):
+        keyword=extract_keyword(line[i-1])
+        if keyword in datatypes and "(" in line[i]:
+            count+=1
+    return count;
+
+
+
+
+
 
 
