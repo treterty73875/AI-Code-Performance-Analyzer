@@ -18,8 +18,13 @@ def count_lines(content):
     count=0;
     for i in range(0,len(lines)):
         count+=1
-    return count;
+    return count
 
+#def count_items(items):
+   # count=0;
+   # for i in range(0,len(items)):
+   #     count+=1
+    #return count
 
 def count_words(content):
     words=content.split()
@@ -54,48 +59,37 @@ def extract_keyword(tokens):
     return keyword
 
 def count_for_loops(content):
-   words=content.split()
-   count=0;
-   for i in range(0,len(words)):
-       keyword=extract_keyword(words[i])
-       if keyword == "for":
-           count+=1
-   return count;
+ return count_keyword(content,"for")
 
 
 
 def count_while_loops(content):
-    line=content.split()
-    count=0;
-    for i in range(0,len(line)):
-        keyword=extract_keyword(line[i])
-        if keyword=="while":
-            count+=1
-    return count;    
+ return count_keyword(content,"while")    
 
 
 def count_if_statements(content):
-    line=content.split()
-    count=0;
-    for i in range(0,len(line)):
-        keyword=extract_keyword(line[i])
-        if keyword=="if":
-            count+=1;
-    return count;
+    return count_keyword(content,"if")
 
 
 
 def count_functions(content):
-    line=content.split()
-    count=0;
-    datatypes=["int","float","double","char","void","long","bool","long long","short"]
-    for i in range(1,len(line)):
+     line=content.split()
+     count=0;
+     datatypes=["int","float","double","char","void","long","bool","long long","short"]
+     for i in range(1,len(line)):
         keyword=extract_keyword(line[i-1])
         if keyword in datatypes and "(" in line[i]:
+            count+=1;
+     return count;
+
+def count_keyword(content,target_keyword):
+    line=content.split()
+    count=0;
+    for i in range(0,len(line)):
+        keyword=extract_keyword(line[i])
+        if keyword==target_keyword:
             count+=1
-    return count;
-
-
+    return count
 
 
 
