@@ -10,7 +10,8 @@ def analyze_content(content):
     while_loops_count=count_while_loops(content)
     if_statements_count=count_if_statements(content)
     functions_count=count_functions(content)
-    return line_count, word_count, blank_line_count, character_count, for_loops_count, while_loops_count, if_statements_count, functions_count
+    variables_count, variables = count_variables(content)
+    return line_count, word_count, blank_line_count, character_count, for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables
 
 
 def count_lines(content):
@@ -91,7 +92,28 @@ def count_keyword(content,target_keyword):
             count+=1
     return count
 
+def count_variables(content):
+    words = content.split()
 
+    datatypes = [
+        "int", "float", "double", "char",
+        "bool", "long", "short", "void"
+    ]
 
+    count = 0;
+    variables = []
 
+    for i in range(1, len(words)):
 
+        previous = extract_keyword(words[i - 1])
+        keyword = extract_keyword(words[i])
+
+        if (previous in datatypes and
+            keyword not in datatypes and
+            "(" not in words[i] and
+            keyword != ""):
+
+            variables.append(keyword)
+            count += 1
+
+    return count, variables
