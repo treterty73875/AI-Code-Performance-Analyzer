@@ -11,7 +11,8 @@ def analyze_content(content):
     if_statements_count=count_if_statements(content)
     functions_count=count_functions(content)
     variables_count, variables = count_variables(content)
-    return line_count, word_count, blank_line_count, character_count, for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables
+    count_datatype, used_datatypes=count_datatypes(content)
+    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables,count_datatype,used_datatypes
 
 
 def count_lines(content):
@@ -117,3 +118,17 @@ def count_variables(content):
             count += 1
 
     return count, variables
+
+
+def count_datatypes(content):
+    words=content.split()
+    datatypes_used=[]
+    datatypes=["int","float","char","double","bool","long","short","void"]
+    for i in range(0,len(words)):
+        keyword=extract_keyword(words[i])
+        if keyword in datatypes:
+            if keyword not in datatypes_used:
+                datatypes_used.append(keyword)
+
+    datatype_count=len(datatypes_used)
+    return datatype_count, datatypes_used

@@ -1,55 +1,44 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
+// Function to add two numbers
 int add(int a, int b)
 {
-    return a + b;
-}
-
-void display()
-{
-    cout << "Welcome to C++ Analyzer" << endl;
-}
-
-int factorial(int n)
-{
-    int result = 1;
-
-    for(int i = 1; i <= n; i++)
-    {
-        result = result * i;
-    }
-
-    return result;
+    int sum = a + b;
+    return sum;
 }
 
 int main()
 {
-    int number = 5;
+    // Variable declarations
+    int age = 22;
+    float salary = 35000.50;
+    double pi = 3.14159;
+    char grade = 'A';
+    bool isPass = true;
+    long population = 1500000;
+    short year = 25;
 
-    if(number > 0)
-    {
-        cout << "Positive Number" << endl;
-    }
-
-    while(number > 0)
-    {
-        cout << number << endl;
-        number--;
-    }
-
-    for(int i = 0; i < 3; i++)
+    // For loop
+    for(int i = 0; i < 5; i++)
     {
         cout << i << endl;
     }
 
-    display();
+    // While loop
+    int count = 0;
+    while(count < 3)
+    {
+        count++;
+    }
 
-    int answer = add(10,20);
+    // If statement
+    if(age > 18)
+    {
+        cout << "Adult" << endl;
+    }
 
-    cout << "Sum = " << answer << endl;
-
-    cout << "Factorial = " << factorial(5) << endl;
+    int result = add(age, count);
 
     return 0;
 }
