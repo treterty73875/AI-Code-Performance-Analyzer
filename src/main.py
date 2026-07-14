@@ -1,7 +1,7 @@
 import reader
 import analyzer
 content=reader.read_file()
-line_count, word_count, blank_line_count, character_count, for_loops_count, while_loops_count, if_statements_count, functions_count , variables_count, variables, count_datatype, used_datatypes= analyzer.analyze_content(content)
+line_count, word_count, blank_line_count, character_count, for_loops_count, while_loops_count, if_statements_count, functions_count , variables_count, variables, count_datatype, used_datatypes,count_return,return_list= analyzer.analyze_content(content)
 print("\n-----content of the file-----\n",content)
 print("\n--------Analysis report--------\n",)
 print("Total number of lines:   \n", line_count)
@@ -16,6 +16,8 @@ print("Total number of variables:   \n", variables_count)
 print("Variables: \n", variables)
 print("Total number of datatypes:   \n",count_datatype)
 print("Used datatypes:   \n",used_datatypes)
+print("total number of return in the code:    \n",count_return)
+print("list of return in the code    \n",return_list)
 
 print("\n-------------------------------\n")
 
