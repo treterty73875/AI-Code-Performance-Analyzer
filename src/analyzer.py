@@ -12,8 +12,16 @@ def analyze_content(content):
     functions_count=count_functions(content)
     variables_count, variables = count_variables(content)
     count_datatype, used_datatypes=count_datatypes(content)
-    count_return, return_list=count_return_datatype(content)
+    count_return, return_list=count_return_statements(content)
     return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list
+
+def tokenization(content):
+    symbols=["{","}","(",")","=",",",";"]
+    for symbol in symbols:
+            content=content.replace(symbol," " + symbol + " ")
+    words=content.split()
+    return words
+
 
 
 def count_lines(content):
@@ -30,7 +38,7 @@ def count_lines(content):
     #return count
 
 def count_words(content):
-    words=content.split()
+    words=tokenization(content)
     count=0;
     for i in range(0,len(words)):
        count+=1
@@ -76,17 +84,17 @@ def count_if_statements(content):
 
 
 def count_functions(content):
-     line=content.split()
+     line=tokenization(content)
      count=0;
      datatypes=["int","float","double","char","void","long","bool","long long","short"]
      for i in range(1,len(line)):
         keyword=extract_keyword(line[i-1])
-        if keyword in datatypes and "(" in line[i]:
+        if keyword in datatypes and "("  in line[i]:
             count+=1;
      return count;
 
 def count_keyword(content,target_keyword):
-    line=content.split()
+    line=tokenization(content)
     count=0;
     for i in range(0,len(line)):
         keyword=extract_keyword(line[i])
@@ -95,7 +103,7 @@ def count_keyword(content,target_keyword):
     return count
 
 def count_variables(content):
-    words = content.split()
+    words = tokenization(content)
 
     datatypes = [
         "int", "float", "double", "char",
@@ -105,24 +113,24 @@ def count_variables(content):
     count = 0;
     variables = []
 
-    for i in range(1, len(words)):
+    for i in range(1, len(words)-1):
 
         previous = extract_keyword(words[i - 1])
-        keyword = extract_keyword(words[i])
-
+        current = extract_keyword(words[i])
+        
         if (previous in datatypes and
-            keyword not in datatypes and
+            current not in datatypes and
             "(" not in words[i] and
-            keyword != ""):
+            words[i+1]!="("):
 
-            variables.append(keyword)
+            variables.append(current)
             count += 1
 
     return count, variables
 
 
 def count_datatypes(content):
-    words=content.split()
+    words=tokenization(content)
     datatypes_used=[]
     datatypes=["int","float","char","double","bool","long","short","void"]
     for i in range(0,len(words)):
@@ -134,13 +142,13 @@ def count_datatypes(content):
     datatype_count=len(datatypes_used)
     return datatype_count, datatypes_used
 
-def count_return_datatype(content):
-    words=content.split()
+def count_return_statements(content):
+    words=tokenization(content)
     return_statement=[]
     for i in range(0,len(words)):
         keyword=extract_keyword(words[i])
         if keyword=="return":
-            if  i+1<len(words):
+            if  i+1<len(words) and words[i+1] not in ["{","}"]:
                 w=words[i]+ " "+words[i+1]
                 return_statement.append(w)
             else :
