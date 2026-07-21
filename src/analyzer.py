@@ -13,7 +13,8 @@ def analyze_content(content):
     variables_count, variables = count_variables(content)
     count_datatype, used_datatypes=count_datatypes(content)
     count_return, return_list=count_return_statements(content)
-    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list
+    Display_variables,variables_used,variables_unused=show_variables(content)
+    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused
 
 def tokenization(content):
     symbols=["{","}","(",")","=",",",";"]
@@ -157,3 +158,29 @@ def count_return_statements(content):
     count=len(return_statement)
     return count,return_statement
 
+def show_variables(content):
+ count, variables=count_variables(content)
+ used_variables =  find_used_variables(content,variables)
+ unused_variables = find_unused_variables(variables,used_variables)
+ return variables,used_variables,unused_variables
+
+
+def find_used_variables(content,variables):
+    words=tokenization(content)
+    datatypes={"int","char","string","double","long","long long","short","bool","float"}
+    used_variables=[]
+    for i in range(1,len(words)):   
+        if words[i-1] not in datatypes:
+            if words[i] in variables:
+                if words[i] not in used_variables:
+                    used_variables.append(words[i])
+    return used_variables
+
+def find_unused_variables(variables,used_variables):
+    unused_variables=[]
+    for variable in variables:
+        if variable not in used_variables:
+                unused_variables.append(variable)
+    return unused_variables
+
+        
