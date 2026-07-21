@@ -85,7 +85,7 @@ def count_if_statements(content):
 
 
 def count_functions(content):
-     line=tokenization(content)
+     line=content.split()
      count=0;
      datatypes=["int","float","double","char","void","long","bool","long long","short"]
      for i in range(1,len(line)):
