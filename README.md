@@ -23,22 +23,33 @@ This project is being developed as part of my M.Tech learning journey to gain ha
 
 ### ✅ Implemented
 
-- Read C++ source files
-- Count total lines
-- Count total words
-- Count blank lines
-- Count total characters
-- Display formatted analysis report
+Read C++ source files
+Tokenize source code
+Count total lines
+Count total words
+Count blank lines
+Count total characters
+Detect for loops
+Detect while loops
+Detect if statements
+Detect functions
+Detect variables
+Detect datatypes
+Detect return statements
+Detect used variables
+Detect unused variables
+Generate formatted analysis report
 
 ### 🚧 Under Development
 
-- Static Code Analysis
-- Complexity Analysis
-- Code Smell Detection
-- Performance Benchmarking
-- AI-based Optimization Suggestions
-- Report Generation
-- Web-based User Interface
+Variable Redeclaration Detection
+Function Call Analysis
+Nested Loop Detection
+Time Complexity Estimation
+Space Complexity Estimation
+Code Smell Detection
+Performance Optimization Suggestions
+AI-based Recommendation Engine
 
 
 
@@ -84,24 +95,30 @@ AI-Code-Performance-Analyzer/
 ---
 
 ## 📊 Current Output
-
 ```text
------ Content of the File -----
-
-#include<iostream>
-using namespace std;
-
-int main()
-{
-    return 0;
-}
 
 --------Analysis Report--------
 
-Total number of lines: 7
-Total number of words: 11
-Total number of blank lines: 0
-Total number of characters: 88
+Total number of lines
+Total number of words
+Total number of blank lines
+Total number of characters
+
+Total number of for loops
+Total number of while loops
+Total number of if statements
+
+Total number of functions
+Total number of variables
+Total number of datatypes
+
+Total number of return statements
+
+List of variables
+
+List of used variables
+
+List of unused variables
 
 -------------------------------
 ```
@@ -113,14 +130,41 @@ Current Phase:
 
 Completed Modules:
 
-- ✅ File Reader Module
-- ✅ Basic Code Analyzer Module
+File Reader Module
+
+Tokenizer Module
+
+Basic Code Metrics
+
+Loop Detection
+
+Function Detection
+
+Variable Detection
+
+Datatype Detection
+
+Return Statement Detection
+
+Used Variable Detection
+
+Unused Variable Detection
+
+Formatted Report Generator
 
 Next Phase:
 
-- 🔄 Loop Detection
-- 🔄 Function Detection
-- 🔄 Variable Detection
+Variable Redeclaration Detection
+
+Function Call Detection
+
+Nested Loop Detection
+
+Time Complexity Estimation
+
+Space Complexity Estimation
+
+Optimization Suggestion Engine
 
 ---
 
@@ -136,27 +180,57 @@ Indian Institute of Engineering Science and Technology (IIEST), Shibpur
 
 
 ## 📅 Project Timeline
-- ✅ Phase 1 – Project Setup
-- ✅ Phase 2 – Basic File Reader
-- ✅ Phase 3 – Basic Code Analyzer
-- 🔄 Phase 4 – Static Code Analyzer
-- ⏳ Phase 5 – Performance Analyzer
-- ⏳ Phase 6 – AI Recommendation Engine
-- ⏳ Phase 7 – Web Application
-- ⏳ Phase 8 – Deployment
+Phase 1 – Project Setup ✅
+
+Phase 2 – File Reader ✅
+
+Phase 3 – Basic Metrics Analyzer ✅
+
+Phase 4 – Static Code Analyzer 🔄
+
+Phase 5 – Complexity Analyzer ⏳
+
+Phase 6 – Optimization Engine ⏳
+
+Phase 7 – AI Recommendation System ⏳
+
+Phase 8 – Web Dashboard ⏳
+
+Phase 9 – Deployment ⏳
 
 ---
 
 ## 📈 Development Progress
 
-| Module | Status |
-|---------|--------|
-| Project Setup | ✅ Completed |
-| File Reader | ✅ Completed |
-| Basic Analyzer | ✅ Completed |
-| Loop Detection | 🔄 In Progress |
-| Function Detection | ⏳ Pending |
-| Variable Detection | ⏳ Pending |
-| AI Performance Analysis | ⏳ Pending |
-| Optimization Engine | ⏳ Pending |
-| Web Dashboard | ⏳ Pending |
+| Module                    | Status         |
+| ------------------------- | -------------- |
+| Project Setup             | ✅ Completed    |
+| File Reader               | ✅ Completed    |
+| Tokenizer                 | ✅ Completed    |
+| Code Metrics              | ✅ Completed    |
+| Loop Detection            | ✅ Completed    |
+| Function Detection        | ✅ Completed    |
+| Variable Detection        | ✅ Completed    |
+| Datatype Detection        | ✅ Completed    |
+| Return Detection          | ✅ Completed    |
+| Used Variable Detection   | ✅ Completed    |
+| Unused Variable Detection | ✅ Completed    |
+| Complexity Analysis       | 🔄 In Progress |
+| AI Recommendation Engine  | ⏳ Planned      |
+| Web Dashboard             | ⏳ Planned      |
+
+The analyzer can currently identify:
+
+• Lines
+• Words
+• Blank Lines
+• Characters
+• for loops
+• while loops
+• if statements
+• Functions
+• Variables
+• Datatypes
+• Return Statements
+• Used Variables
+• Unused Variables
