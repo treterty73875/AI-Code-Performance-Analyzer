@@ -14,7 +14,8 @@ def analyze_content(content):
     count_datatype, used_datatypes=count_datatypes(content)
     count_return, return_list=count_return_statements(content)
     Display_variables,variables_used,variables_unused=show_variables(content)
-    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused
+    count_redeclared_variables,redeclared_variables=get_redeclared_variables(content)
+    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused,count_redeclared_variables,redeclared_variables
 
 def tokenization(content):
     symbols=["{","}","(",")","=",",",";"]
@@ -105,17 +106,13 @@ def count_keyword(content,target_keyword):
 
 def count_variables(content):
     words = tokenization(content)
-
     datatypes = [
         "int", "float", "double", "char",
         "bool", "long", "short", "void"
     ]
-
     count = 0;
     variables = []
-
     for i in range(1, len(words)-1):
-
         previous = extract_keyword(words[i - 1])
         current = extract_keyword(words[i])
         
@@ -180,7 +177,25 @@ def find_unused_variables(variables,used_variables):
     unused_variables=[]
     for variable in variables:
         if variable not in used_variables:
-                unused_variables.append(variable)
+                if variable not in unused_variables:
+                   unused_variables.append(variable)
     return unused_variables
 
-        
+def get_redeclared_variables(content):
+    count,variables=count_variables(content)
+    redeclared_variables=find_redeclared_variables(variables)
+    count=len(redeclared_variables)
+    return count,redeclared_variables
+
+def find_redeclared_variables(variables):
+    redeclared_variables=[]
+    hash={}
+    for i in range(0,len(variables)):
+        target=variables[i]
+        if target in hash:
+            if target not in redeclared_variables:
+                redeclared_variables.append(target)
+        else:
+            hash[variables[i]]=i
+
+    return redeclared_variables

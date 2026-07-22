@@ -1,17 +1,15 @@
 #include <iostream>
 using namespace std;
 
-// Function to find maximum number
+// Function to find maximum
 int maximum(int a, int b)
 {
     if(a > b)
     {
         return a;
     }
-    else
-    {
-        return b;
-    }
+
+    return b;
 }
 
 // Function to calculate factorial
@@ -50,6 +48,11 @@ int main()
     bool pass = true;
     long population = 1000000;
     short year = 25;
+
+    // Redeclared variables
+    int age = 30;
+    float salary = 60000;
+    char grade = 'B';
 
     int result = maximum(age, 20);
 
