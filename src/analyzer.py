@@ -9,13 +9,14 @@ def analyze_content(content):
     for_loops_count=count_for_loops(content)
     while_loops_count=count_while_loops(content)
     if_statements_count=count_if_statements(content)
-    functions_count=count_functions(content)
+    definition_function,functions_count=count_functions(content)
     variables_count, variables = count_variables(content)
     count_datatype, used_datatypes=count_datatypes(content)
     count_return, return_list=count_return_statements(content)
     Display_variables,variables_used,variables_unused=show_variables(content)
     count_redeclared_variables,redeclared_variables=get_redeclared_variables(content)
-    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused,count_redeclared_variables,redeclared_variables
+    calls_function,calls_function_count=find_function_calls(content)
+    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count,definition_function, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused,count_redeclared_variables,redeclared_variables,calls_function,calls_function_count
 
 def tokenization(content):
     symbols=["{","}","(",")","=",",",";"]
@@ -63,7 +64,6 @@ def count_characters(content):
 
 def extract_keyword(tokens):
     keyword=""
-
     for ch in tokens:
         if ch.isalpha():
             keyword+=ch
@@ -86,14 +86,17 @@ def count_if_statements(content):
 
 
 def count_functions(content):
-     line=content.split()
+     line=tokenization(content)
      count=0;
+     function_definition=[]
      datatypes=["int","float","double","char","void","long","bool","long long","short"]
-     for i in range(1,len(line)):
+     for i in range(1,len(line)-1):
         keyword=extract_keyword(line[i-1])
-        if keyword in datatypes and "("  in line[i]:
-            count+=1;
-     return count;
+        if keyword in datatypes and "("  == line[i+1]:
+           if line[i] not in function_definition:
+             function_definition.append(line[i])
+             count+=1;
+     return function_definition,count;
 
 def count_keyword(content,target_keyword):
     line=tokenization(content)
@@ -114,16 +117,13 @@ def count_variables(content):
     variables = []
     for i in range(1, len(words)-1):
         previous = extract_keyword(words[i - 1])
-        current = extract_keyword(words[i])
-        
+        current = extract_keyword(words[i]) 
         if (previous in datatypes and
             current not in datatypes and
             "(" not in words[i] and
             words[i+1]!="("):
-
             variables.append(current)
             count += 1
-
     return count, variables
 
 
@@ -136,7 +136,6 @@ def count_datatypes(content):
         if keyword in datatypes:
             if keyword not in datatypes_used:
                 datatypes_used.append(keyword)
-
     datatype_count=len(datatypes_used)
     return datatype_count, datatypes_used
 
@@ -150,8 +149,7 @@ def count_return_statements(content):
                 w=words[i]+ " "+words[i+1]
                 return_statement.append(w)
             else :
-                return_statement.append(words[i])
-              
+                return_statement.append(words[i])          
     count=len(return_statement)
     return count,return_statement
 
@@ -197,5 +195,18 @@ def find_redeclared_variables(variables):
                 redeclared_variables.append(target)
         else:
             hash[variables[i]]=i
-
     return redeclared_variables
+
+def find_function_calls(content):
+    function_list,counts=count_functions(content)
+    function_calls=[]
+    count=0
+    datatype=["int","short","char","string","float","double","void","bool","long"]
+    words=tokenization(content)
+    for i in range(1,len(words)-1):
+        keyword=extract_keyword(words[i-1])
+        if keyword not in datatype and words[i] in function_list:
+            if words[i+1]=="(" and words[i] not in function_calls:
+                count+=1
+                function_calls.append(words[i])
+    return function_calls,count

@@ -1,7 +1,7 @@
 import reader
 import analyzer
 content=reader.read_file()
-line_count, word_count, blank_line_count, character_count, for_loops_count, while_loops_count, if_statements_count, functions_count , variables_count, variables, count_datatype, used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused,count_redeclared_variables,redeclared_variables= analyzer.analyze_content(content)
+line_count, word_count, blank_line_count, character_count, for_loops_count, while_loops_count, if_statements_count, definition_function,functions_count , variables_count, variables, count_datatype, used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused,count_redeclared_variables,redeclared_variables,calls_function,calls_function_count= analyzer.analyze_content(content)
 print("\n-----content of the file-----\n",content)
 print("\n--------Analysis report--------\n",)
 print("Total number of lines:   \n", line_count)
@@ -11,6 +11,7 @@ print("Total number of characters:   \n", character_count)
 print("Total number of for loops:   \n", for_loops_count)
 print("Total number of while loops:   \n", while_loops_count)
 print("Total number of if statements:   \n", if_statements_count)
+print("List of function definition \n",definition_function)
 print("Total number of functions:    \n", functions_count)
 print("Total number of variables:   \n", variables_count)
 print("Variables: \n", variables)
@@ -23,6 +24,8 @@ print("list of used variables \n",variables_used)
 print("list of unused variables \n",variables_unused)
 print("number of redeclared variables",count_redeclared_variables)
 print("list of redeclared_variables",redeclared_variables)
+print("list of function calls \n", calls_function)
+print("Number of function calls \n", calls_function_count)
 
 print("\n-------------------------------\n")
 
