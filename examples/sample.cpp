@@ -1,69 +1,71 @@
 #include <iostream>
 using namespace std;
 
-// Function to find maximum
-int maximum(int a, int b)
-{
-    if(a > b)
-    {
-        return a;
-    }
-
-    return b;
-}
-
-// Function to calculate factorial
 int factorial(int n)
 {
-    int fact = 1;
-
-    for(int i = 1; i <= n; i++)
+    if(n <= 1)
     {
-        fact = fact * i;
+        return 1;
     }
 
-    return fact;
+    return n * factorial(n - 1);
 }
 
-// Function to print numbers
-void printNumbers(int limit)
+int add(int a, int b)
 {
-    int count = 0;
+    int sum = a + b;
+    return sum;
+}
 
-    while(count < limit)
+void display(int n)
+{
+    int i;
+
+    for(i = 0; i < n; i++)
     {
-        cout << count << endl;
-        count++;
+        cout << i << " ";
     }
 
-    return;
+    while(n > 0)
+    {
+        n--;
+    }
+}
+
+void test()
+{
+    int x = 10;
+    int y = 20;
+    int unused = 100;
+
+    if(x < y)
+    {
+        x = add(x, y);
+    }
+
+    cout << x << endl;
 }
 
 int main()
 {
-    int age = 22;
-    float salary = 50000.50;
-    double pi = 3.14159;
-    char grade = 'A';
-    bool pass = true;
-    long population = 1000000;
-    short year = 25;
+    int number = 5;
+    int result;
+    int temp = 0;
 
-    // Redeclared variables
-    int age = 30;
-    float salary = 60000;
-    char grade = 'B';
+    result = factorial(number);
 
-    int result = maximum(age, 20);
+    display(number);
 
-    if(result > 20)
+    test();
+
+    if(result > 100)
     {
-        cout << "Result is greater than 20" << endl;
+        cout << "Large" << endl;
     }
-
-    int value = factorial(5);
-
-    printNumbers(3);
+    else
+    {
+        cout << "Small" << endl;
+    }
 
     return 0;
 }

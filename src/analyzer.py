@@ -16,7 +16,8 @@ def analyze_content(content):
     Display_variables,variables_used,variables_unused=show_variables(content)
     count_redeclared_variables,redeclared_variables=get_redeclared_variables(content)
     calls_function,calls_function_count=find_function_calls(content)
-    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count,definition_function, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused,count_redeclared_variables,redeclared_variables,calls_function,calls_function_count
+    recursive_functions,recursive_functions_count=find_recursive_functions(content)
+    return line_count, word_count, blank_line_count, character_count,for_loops_count, while_loops_count, if_statements_count,definition_function, functions_count, variables_count, variables,count_datatype,used_datatypes,count_return,return_list,Display_variables,variables_used,variables_unused,count_redeclared_variables,redeclared_variables,calls_function,calls_function_count,recursive_functions,recursive_functions_count
 
 def tokenization(content):
     symbols=["{","}","(",")","=",",",";"]
@@ -162,13 +163,14 @@ def show_variables(content):
 
 def find_used_variables(content,variables):
     words=tokenization(content)
-    datatypes={"int","char","string","double","long","long long","short","bool","float"}
+    datatypes={"int","char","string","double","long","long long","short","bool","float","void"}
     used_variables=[]
     for i in range(1,len(words)):   
         if words[i-1] not in datatypes:
             if words[i] in variables:
                 if words[i] not in used_variables:
-                    used_variables.append(words[i])
+                      print("Previous token:", words[i-1], "Current token:", words[i])
+                      used_variables.append(words[i])
     return used_variables
 
 def find_unused_variables(variables,used_variables):
@@ -210,3 +212,33 @@ def find_function_calls(content):
                 count+=1
                 function_calls.append(words[i])
     return function_calls,count
+
+def find_recursive_functions(content):
+    words=tokenization(content)
+    function_list,_=count_functions(content)
+    recursive_functions=[]
+    datatype=["int","char","short","long","double","string","bool","float","void"]
+    for function in function_list:
+        for i in range(0,len(words)):
+            if words[i]==function:
+             keyword=extract_keyword(words[i-1])
+             if keyword in datatype:
+                 while i<len(words) and words[i]!="{":
+                     i+=1
+                 if i<len(words) and words[i]=="{":
+                         brace=1
+                         for l in range(i+1,len(words)):
+                             if words[l]=="{":
+                                 brace+=1
+                             elif words[l]=="}":
+                                 brace-=1
+                                 if brace==0:
+                                     break
+                             elif  l+1<len(words) and words[l]==function and words[l+1]=="(":
+                                 if function not in recursive_functions:
+                                     recursive_functions.append(function)
+                             
+                                     break
+    count=len(recursive_functions)
+    return recursive_functions,count
+
